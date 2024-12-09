@@ -84,6 +84,23 @@ class CustomEnergyCard extends LitElement {
         font-size: 1.5em;
         font-weight: bold;
       }
+      .line {
+        grid-area: line;
+        position: relative;
+        width: 100%;
+        height: 0.1em;
+        background-color: grey;
+      }
+      .dot {
+        position: absolute;
+        top: -6px;
+        left: 0;
+        width: 12px;
+        height: 12px;
+        background-color: red;
+        border-radius: 50%;
+        animation: moveDot 5s linear infinite;
+      }
     `;
   }
   setConfig(config) {
@@ -99,6 +116,9 @@ class CustomEnergyCard extends LitElement {
     }
 
     const solarState = this.hass.states[this._config.solar];
+    const pv1State = this.hass.states[this._config.pv1];
+    const consumptionState = this.hass.states[this._config.consumption];
+
     if (!solarState) {
       return html` <ha-card>Unknown entity: ${this._config.solar}</ha-card> `;
     }
@@ -106,9 +126,6 @@ class CustomEnergyCard extends LitElement {
     // @click below is also LitElement magic
     return html`
       <ha-card style="padding:1em;">
-          <h1>Configuration</h1>
-          <pre>{{config}}</pre>
-          <h2>Status: </h2>
           <div>
               <div class="card">
               <div class="box" id="solar">
@@ -117,7 +134,7 @@ class CustomEnergyCard extends LitElement {
               </div>
               <div class="box" id="pv1">
                   <div>☀️ PV1</div>
-                  <div class="state" id="solarState"></div>
+                  <div class="state" id="pv1State"></div>
               </div>
               <div class="box" id="line">
                   <div class="dot"></div>
