@@ -1,4 +1,4 @@
-class CustomSolarCard extends HTMLElement {
+class CustomEnergyCard extends HTMLElement {
     // private properties
 
     _config;
@@ -296,8 +296,8 @@ class CustomSolarCard extends HTMLElement {
 
 window.customCards = window.customCards || [];
 window.customCards.push({
-    type: "custom-solar-card",
-    name: "CustomSolarCard",
+    type: "custom-energy-card",
+    name: "CustomEnergyCard",
     description: "A custom card made by me!" // optional
 });
-customElements.define('custom-solar-card', CustomSolarCard);
+customElements.define('custom-energy-card', CustomEnergyCard);
